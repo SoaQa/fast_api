@@ -4,7 +4,7 @@ router = APIRouter()
 
 
 @router.get("/")
-def read_root():
+def items():
     return [
         {
             "id": 1,
