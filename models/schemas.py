@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import List, Optional
 
 
@@ -20,11 +20,18 @@ class Item(ItemBase):
 
 
 class UserBase(BaseModel):
-    email: str
+    email: EmailStr
 
 
 class UserCreate(UserBase):
     password: str
+
+
+UserAuth = UserCreate
+
+
+class LiteUser(UserBase):
+    id: int
 
 
 class User(UserBase):
@@ -34,3 +41,7 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+
+class Token(BaseModel):
+    access_token: str
